@@ -1,6 +1,6 @@
 /*
  * grunt-css-stats-display
- * https://github.com/tictrac/grunt-css-stats-display
+ * https://github.com/Tictrac/grunt-css-stats-display
  *
  * Copyright (c) 2015 Tictrac
  * Licensed under the MIT license.
