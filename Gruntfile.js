@@ -32,7 +32,9 @@ module.exports = function(grunt) {
     cssstatsdisplay: {
       default_options: {
         options: {
-            specificityThreshold: "0040"
+            specificityThreshold: "0040",
+            templateHtml: false,
+            templateCss: false
         },
         files: {
           'tmp/output_default': ['test/fixtures/test.css']
@@ -40,7 +42,9 @@ module.exports = function(grunt) {
       },
       custom_options: {
         options: {
-            specificityThreshold: "0060"
+            specificityThreshold: "0060",
+            templateHtml: 'test/fixtures/custom-template/index.html',
+            templateCss: 'test/fixtures/custom-template/css.css'
         },
         files: {
             'tmp/output_custom': ['test/fixtures/test.css']

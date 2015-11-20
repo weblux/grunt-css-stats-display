@@ -16,8 +16,8 @@ var fs = require('fs'),
 module.exports = function(grunt) {
     grunt.registerMultiTask('cssstatsdisplay', 'displays css statistics nicely', function() {
         var options = this.options(),
-            template = handlebars.compile(grunt.file.read(__dirname + '/template/index.html')),
-            templateCss = grunt.file.read(__dirname + '/template/styles.css'),
+            templateHtml = setTemplate(options),
+            templateCss = setTemplateCss(options),
             css,
             stats,
             dest;
@@ -74,10 +74,32 @@ module.exports = function(grunt) {
             stats.fileSize = (stats.size/1000).toFixed(0);
         }
 
+        /**
+         * set and compile the template
+         * @param  {Object} opts
+         */
+        function setTemplate(opts) {
+            if (opts.templateHtml) {
+                return handlebars.compile(grunt.file.read(opts.templateHtml));
+            }
+            return handlebars.compile(grunt.file.read(__dirname + '/template/index.html'));
+        }
+
+        /**
+         * set the css file for the template
+         * @param  {Object} opts
+         */
+        function setTemplateCss(opts) {
+            if (opts.templateCss) {
+                return grunt.file.read(opts.templateCss);
+            }
+            return grunt.file.read(__dirname + '/template/styles.css');
+        }
+
         setDest(this.files);
         css = cssstats(getCss(this.files));
         setCustomProperties(css, options);
-        grunt.file.write(dest + '/index.html', template(css));
+        grunt.file.write(dest + '/index.html', templateHtml(css));
         grunt.file.write(dest + '/styles.css', templateCss);
 
     });

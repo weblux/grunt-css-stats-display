@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stylesheet stats</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="header">
+    <h1 class="header__title h1 text-center">Custom Stylesheet Statistics</h1>
+</header>
+
+<div class="page">
+    <h2 class="h2 text-center mb-20">File Statistics</h2>
+    <ul class="page__section grid cf">
+        <li class="grid__item grid-sml-1 grid-med-1-2 grid-lrg-1-3">
+            <div class="stat">
+                <div class="stat__value">{{ fileSize }} kb</div>
+                <h3 class="stat__title">File size</h3>
+            </div>
+        </li>
+        <li class="grid__item grid-sml-1 grid-med-1-2 grid-lrg-1-3">
+            <div class="stat">
+                <div class="stat__value">{{ aggregates.selectors }}</div>
+                <h3 class="stat__title">Number of selectors</h3>
+            </div>
+
+        </li>
+        <li class="grid__item grid-sml-1 grid-med-1-2 grid-lrg-1-3">
+            <div class="stat">
+                <div class="stat__value">{{ aggregates.declarations }}</div>
+                <h3 class="stat__title">Number of declarations</h3>
+            </div>
+        </li>
+    </ul>
+
+    <h2 class="h2 text-center mb-20">Secondary Statistics</h2>
+
+    <ul class="page__section grid cf">
+        {{#if aggregates.fontSizes.unique }}
+        <li class="grid__item grid-sml-1 grid-med-1-2 grid-lrg-1-3">
+            <div class="stat">
+                <div class="stat__value">{{ aggregates.fontSizes.unique }}</div>
+                <h3 class="stat__title">Unique font sizes</h3>
+            </div>
+        </li>
+        {{/if}}
+        {{#if aggregates.backgroundColors.unique }}
+        <li class="grid__item grid-sml-1 grid-med-1-2 grid-lrg-1-3">
+            <div class="stat">
+                <div class="stat__value">{{ aggregates.backgroundColors.unique }}</div>
+                <h3 class="stat__title">Number of background colors</h3>
+            </div>
+
+        </li>
+        {{/if}}
+        {{#if aggregates.colors.unique }}
+        <li class="grid__item grid-sml-1 grid-med-1-2 grid-lrg-1-3">
+            <div class="stat">
+                <div class="stat__value">{{ aggregates.colors.unique }}</div>
+                <h3 class="stat__title">Number of text colors</h3>
+            </div>
+        </li>
+        {{/if}}
+    </ul>
+
+    <section class="page__section grid cf">
+        <div class="table-container">
+            <h2 class="h2 text-center mb-20">Bad Selectors</h2>
+            <div class="table-scroll">
+                <table class="table">
+                    <tr>
+                        <th class="text-left h3 table-cell" width="80%">Selector</th>
+                        <th class="text-right h3 table-cell" width="20%">Specificity</th>
+                    </tr>
+                    {{#each badSelectors}}
+                    <tr>
+                        <td class="table-cell">{{ selector }}</td>
+                        <td class="table-cell text-right"> {{ specificity }}</td>
+                    </tr>
+                    {{/each}}
+                </table>
+            </div>
+        </div>
+    </section>
+    {{#if aggregates.mediaQueries }}
+    <section class="page__section">
+        <h2 class="h2 text-center mb-20">Media Queries</h2>
+        <ul>
+        {{#each aggregates.mediaQueries }}
+            <li class="pill">{{ this }}</li>
+        {{/each}}
+        </ul>
+    </section>
+    {{/if}}
+</div>
+</body>
+</html>
