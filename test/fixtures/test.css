@@ -1,0 +1,20 @@
+.test-class {
+    color: red;
+}
+
+#badId.bad-class > h1 {
+    border: 1px solid #ddd;
+}
+
+#even-more-specific.selector:not(:last-child) #the-worst {
+    font-size: 12px;
+}
+
+#even-more-specific.selector:not(:last-child) {
+    font-size: 14px;
+    background-color: red;
+}
+
+.test1.test2.test3.test4.test5 {
+    color: blue;
+}
