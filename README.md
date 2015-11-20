@@ -1,6 +1,6 @@
 # grunt-css-stats-display
 
-> displays css statistics nicely
+> Displays css statistics nicely.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
@@ -20,11 +20,11 @@ grunt.loadNpmTasks('grunt-css-stats-display');
 ## The "css_stats_display" task
 
 ### Overview
-In your project's Gruntfile, add a section named `css_stats_display` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `cssstatsdisplay` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  css_stats_display: {
+  cssstatsdisplay: {
     options: {
       specificityThreshold: "0040"
     },
@@ -47,11 +47,10 @@ This article explains the specificity numbers https://css-tricks.com/specifics-o
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
 
 ```js
 grunt.initConfig({
-  css_stats_display: {
+  cssstatsdisplay: {
     options: {},
     files: {
       'dest/default_options': ['src/styles.css'],
@@ -61,16 +60,16 @@ grunt.initConfig({
 ```
 
 #### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+In this example, custom options are used to raise the specificity of the flagged selectors.
 
 ```js
 grunt.initConfig({
-  css_stats_display: {
+  cssstatsdisplay: {
     options: {
       specificityThreshold: '0500'
     },
     files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+      'dest/default_options': ['src/app/app.css'],
     },
   },
 });
