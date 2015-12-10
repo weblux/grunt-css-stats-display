@@ -8,10 +8,9 @@
 
 'use strict';
 var fs = require('fs'),
-    util = require('util'),
     handlebars = require('handlebars'),
     helpers = require('./lib/helper.js'),
-    cssstats = require('css-statistics');
+    cssStats = require('cssstats');
 
 module.exports = function(grunt) {
     grunt.registerMultiTask('cssstatsdisplay', 'displays css statistics nicely', function() {
@@ -66,13 +65,12 @@ module.exports = function(grunt) {
          * @param {object} opts
          */
         function setCustomProperties(stats, opts) {
-            var badSelectors = helpers.getWorstSelectors(stats.selectors, opts.specificityThreshold),
-                i;
+            var badSelectors = helpers.getWorstSelectors(stats.selectors.getSortedSpecificity(), opts.specificityThreshold);
 
-            for (i = 0; i < badSelectors.length; i++) {
-                badSelectors[i].specificity = helpers.stripCommas(badSelectors[i].specificity);
-            }
-
+            stats.fontSizes = stats.declarations.getUniquePropertyCount('font-size');
+            stats.backgroundColors = stats.declarations.getUniquePropertyCount('background-color');
+            stats.textColors = stats.declarations.getUniquePropertyCount('color');
+            stats.uniqueMediaQueries = helpers.getUniqueMediaQueries(stats.mediaQueries.contents);
             stats.badSelectors = badSelectors;
             stats.fileSize = (stats.size/1000).toFixed(0);
         }
@@ -100,7 +98,7 @@ module.exports = function(grunt) {
         }
 
         setDest(this.files);
-        css = cssstats(getCss(this.files));
+        css = cssStats(getCss(this.files));
         setCustomProperties(css, options);
         grunt.file.write(dest + '/index.html', templateHtml(css));
         grunt.file.write(dest + '/styles.css', templateCss);

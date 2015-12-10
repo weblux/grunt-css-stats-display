@@ -2,7 +2,7 @@
 
 module.exports = {
     getWorstSelectors: getWorstSelectors,
-    stripCommas: stripCommas
+    getUniqueMediaQueries: getUniqueMediaQueries
 };
 
 /**
@@ -17,18 +17,26 @@ function getWorstSelectors(selectors, threshold) {
         results = [];
 
     for (var i = 0; i < selectors.length; i++) {
-        formattedSpecificity = Number(selectors[i].specificity.replace(/,/g, ''));
-        if (formattedSpecificity >= parseInt(threshold)) {
+        if (selectors[i].specificity >= parseInt(threshold)) {
             results.push(selectors[i]);
+        }
+    }
+    return results;
+}
+
+/**
+ * sort and get unique media queries
+ * @param {Array} mediaQueries
+ */
+function getUniqueMediaQueries(mediaQueries) {
+    var i,
+        results = [];
+
+    for (i = 0; i < mediaQueries.length; i++) {
+        if (results.indexOf(mediaQueries[i].value) === -1) {
+            results.push(mediaQueries[i].value);
         }
     }
 
     return results;
-}
-
-function stripCommas(specificity) {
-    if (specificity.match(/,/g)) {
-        return specificity.replace(/,/g, '');
-    }
-    return specificity;
 }

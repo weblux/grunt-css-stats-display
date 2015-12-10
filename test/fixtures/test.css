@@ -18,3 +18,25 @@
 .test1.test2.test3.test4.test5 {
     color: blue;
 }
+
+.butt {
+    background-color: red;
+}
+
+
+@media all and (min-width: 501px){
+    .page-content--full-width {
+        padding: 0 20px;
+    }
+}
+@media all and (min-width: 801px){
+    .page-content--top {
+        padding-top: 40px;
+    }
+}
+
+@media all and (min-width: 801px){
+    .duplicate {
+        padding-top: 40px;
+    }
+}

@@ -1,7 +1,8 @@
 'use strict';
 
 var grunt = require('grunt'),
-    cssStats = require('css-statistics'),
+    util = require('util'),
+    cssStats = require('cssstats'),
     helpers = require('../tasks/lib/helper.js');
 
 /*
@@ -34,16 +35,15 @@ exports.css_stats_display = {
         var html = grunt.file.isFile('tmp/output_default/index.html'),
             css = grunt.file.isFile('tmp/output_default/styles.css');
 
-        test.expect(5);
+        test.expect(4);
 
         /** EXPECT ALL FILES TO EXIST **/
         test.equal(html, true, 'html file should exist');
         test.equal(css, true, 'css file should exist');
 
         /** MAKE SURE THE HELPERS RUN CORRECTLY  **/
-        test.equal(helpers.getWorstSelectors(this.cssJson.selectors, '0100').length, 3, 'should return 3 selectors');
-        test.equal(helpers.getWorstSelectors(this.cssJson.selectors, '0200').length, 1, 'should return 1 selectors');
-        test.equal(helpers.stripCommas('this, is, a lot, of, commas'), 'this is a lot of commas', 'should return a string with no commas');
+        test.equal(helpers.getWorstSelectors(this.cssJson.selectors.getSortedSpecificity(), '100').length, 3, 'should return 3 selectors');
+        test.equal(helpers.getWorstSelectors(this.cssJson.selectors.getSortedSpecificity(), '200').length, 1, 'should return 1 selectors');
 
         test.done();
     },

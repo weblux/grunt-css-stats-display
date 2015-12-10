@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Stylesheet stats</title>
+    <title>Custom stylesheet stats</title>
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header class="header">
-    <h1 class="header__title h1 text-center">Custom Stylesheet Statistics</h1>
+    <h1 class="header__title h1 text-center">Custom stylesheet Statistics</h1>
 </header>
 
 <div class="page">
@@ -23,14 +23,14 @@
         </li>
         <li class="grid__item grid-sml-1 grid-med-1-2 grid-lrg-1-3">
             <div class="stat">
-                <div class="stat__value">{{ aggregates.selectors }}</div>
+                <div class="stat__value">{{ selectors.total }}</div>
                 <h3 class="stat__title">Number of selectors</h3>
             </div>
 
         </li>
         <li class="grid__item grid-sml-1 grid-med-1-2 grid-lrg-1-3">
             <div class="stat">
-                <div class="stat__value">{{ aggregates.declarations }}</div>
+                <div class="stat__value">{{ declarations.total }}</div>
                 <h3 class="stat__title">Number of declarations</h3>
             </div>
         </li>
@@ -39,27 +39,27 @@
     <h2 class="h2 text-center mb-20">Secondary Statistics</h2>
 
     <ul class="page__section grid cf">
-        {{#if aggregates.fontSizes.unique }}
+        {{#if fontSizes }}
         <li class="grid__item grid-sml-1 grid-med-1-2 grid-lrg-1-3">
             <div class="stat">
-                <div class="stat__value">{{ aggregates.fontSizes.unique }}</div>
+                <div class="stat__value">{{ fontSizes }}</div>
                 <h3 class="stat__title">Unique font sizes</h3>
             </div>
         </li>
         {{/if}}
-        {{#if aggregates.backgroundColors.unique }}
+        {{#if backgroundColors }}
         <li class="grid__item grid-sml-1 grid-med-1-2 grid-lrg-1-3">
             <div class="stat">
-                <div class="stat__value">{{ aggregates.backgroundColors.unique }}</div>
+                <div class="stat__value">{{ backgroundColors }}</div>
                 <h3 class="stat__title">Number of background colors</h3>
             </div>
 
         </li>
         {{/if}}
-        {{#if aggregates.colors.unique }}
+        {{#if textColors }}
         <li class="grid__item grid-sml-1 grid-med-1-2 grid-lrg-1-3">
             <div class="stat">
-                <div class="stat__value">{{ aggregates.colors.unique }}</div>
+                <div class="stat__value">{{ textColors }}</div>
                 <h3 class="stat__title">Number of text colors</h3>
             </div>
         </li>
@@ -85,11 +85,11 @@
             </div>
         </div>
     </section>
-    {{#if aggregates.mediaQueries }}
+    {{#if uniqueMediaQueries }}
     <section class="page__section">
         <h2 class="h2 text-center mb-20">Media Queries</h2>
         <ul>
-        {{#each aggregates.mediaQueries }}
+        {{#each uniqueMediaQueries }}
             <li class="pill">{{ this }}</li>
         {{/each}}
         </ul>
