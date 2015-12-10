@@ -43,7 +43,10 @@ module.exports = function(grunt) {
                     return grunt.file.read(filepath);
                 });
             });
-
+            if (!src[0]){
+                grunt.log.warn('No css file specified');
+                return false;
+            }
             return src[0];
         }
 
