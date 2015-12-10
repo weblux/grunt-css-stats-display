@@ -1,7 +1,7 @@
 {
   "name": "grunt-css-stats-display",
   "description": "displays css statistics nicely",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/Tictrac/grunt-css-stats-display",
   "author": {
     "name": "Tictrac",
