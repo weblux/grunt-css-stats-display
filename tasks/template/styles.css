@@ -71,7 +71,6 @@ body {
 /* header */
 .header {
     padding: 20px;
-    margin-bottom: 40px;
 	color: #ffffff;
 	background: #4071A2;
 }
@@ -86,6 +85,52 @@ body {
 	.header__title {
 		font-size: 42px;
 	}
+}
+
+.navigation {
+  background: #f6f6f6;
+  display: block;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.navigation ul,
+.navigation li {
+  display: block;
+}
+
+.navigation li + li {
+  border-top: 1px solid #ccc;
+}
+
+.navigation a {
+  display: block;
+  color: #414141;
+  padding: 20px 40px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.navigation .active,
+.navigation a:hover,
+.navigation a:focus {
+  background: #414141;
+  color: #f6f6f6;
+}
+
+@media (min-width: 720px) {
+  .navigation {
+    text-align: center;
+  }
+
+  .navigation li {
+    display: inline-block;
+  }
+
+  .navigation li + li {
+    border-top: none;
+  }
 }
 
 /* stat list */
@@ -153,6 +198,7 @@ body {
 }
 
 .grid__item {
+	padding-bottom: 20px;
 	padding-left: 20px;
 	float: left;
 }
@@ -324,4 +370,42 @@ body {
 
 .mb-40 {
     margin-bottom: 40px;
+}
+
+.grid__colors_scheme {
+  box-sizing: border-box;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 30px;
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .grid__colors_scheme {
+    width: 50%;
+  }
+}
+
+@media (min-width: 760px) {
+  .grid__colors_scheme {
+    width: 20%;
+  }
+}
+
+.grid__colors_sheme_gradient {
+  width: 100%;
+}
+
+.grid__colors_scheme .colors-block {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: block;
+  margin: 0 auto 7px;
+  padding-top: 56.25%;
+  width: 100%;
+}
+
+.grid__colors_sheme_gradient .colors-block {
+  padding-top: 0;
+  height: 100px;
 }
