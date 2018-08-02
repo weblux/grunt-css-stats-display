@@ -29,6 +29,10 @@ grunt.initConfig({
       specificityThreshold: "0040"
     },
     files: {
+      expand: true,
+      cwd: source-directory,
+      src: [inputCssFile],
+      dest: output-directory
       output-directory: [inputCssFile]
     }
   },
